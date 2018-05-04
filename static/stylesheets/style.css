@@ -1,0 +1,19 @@
+.wrapper {
+    width: 900px;
+    min-height: 600px;
+    padding: 5px;
+    background-color: beige;
+}
+
+#show {
+    display: inline-block;
+}
+
+
+/* #ebt {
+    border: 1px solid black;
+    background-color: lightskyblue;
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 30px 30px;
+} */

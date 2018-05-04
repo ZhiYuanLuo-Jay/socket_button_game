@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Node Web Server</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+
+    <script>
+        $(document).ready(function() {
+            var socket = io(); //1
+            $('#show').text("0");
+            $('button#ebt').click(function() {
+                socket.emit('pushed_button', {}); // init sending
+            });
+
+            $('button#rbt').click(function() {
+                var socket = io(); //1
+                socket.emit('reset_button', {}); // init sending
+            });
+
+            socket.on('updated_number', function(data) { // receiving 
+                console.log(data.updatedNum)
+                $('#show').text(data.updatedNum)
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>The button has been pushed
+            <div id='show'></div> time(s)</h1>
+        <p>Push the button to update the count!</p>
+        <div class="container">
+            <button class="btn btn-success btn-lg" id="ebt">Push the Epic Button</button>
+            <br>
+            <br>
+            <button class="btn btn-danger btn-sm" id="rbt">Reset</button>
+        </div>
+
+
+    </div>
+</body>
+
+</html>
